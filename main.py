@@ -11,7 +11,16 @@ if not BOT_TOKEN:
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Hello! I'm your bot.")
 
-app = ApplicationBuilder().token(BOT_TOKEN).build()
-app.add_handler(CommandHandler("start", start))
+def main():
+    # Build the application
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-app.run_polling()
+    # Add the /start command handler
+    app.add_handler(CommandHandler("start", start))
+
+    # Start the bot in polling mode
+    print("Starting bot in polling mode...")
+    app.run_polling()
+
+if __name__ == "__main__":
+    main()
